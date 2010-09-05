@@ -1,4 +1,7 @@
 <?php
+/**
+ * A helper class to prepare the suggest plugin.
+ */
 final class Core_Sijax_Plugin_Suggest {
 
 	const PARAM_FIELD_ID = 'fieldId';

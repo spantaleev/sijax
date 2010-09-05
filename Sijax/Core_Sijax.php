@@ -1,13 +1,7 @@
 <?php
 /**
- * Sijax stands for "Simple ajax" and provides just that.
- * It's a simple php/jquery library providing easy ajax integration for php web apps.
- *
- * Sijax is very similar to Xajax, which was developed way before it.
- * The difference is that Sijax aims to be a lot simpler and faster,
- * while still providing the majority of features and extensibility.
- * 
- * There are sample files in the examples directory that demonstrate how it can be used.
+ * This is the main Sijax class that takes care of,
+ * registering callable functions, processing incoming data and dispatching calls.
  */
 final class Core_Sijax {
 	
