@@ -88,8 +88,13 @@ We believe Sijax to be a lot faster and lighter than Xajax on the server-side. T
 - Requires jQuery - since most projects probably already use jQuery, this may not be a problem
 - Only supports utf-8
 - Requires JSON - an additional 3kB library has to be loaded (automatically) for IE <= 7
+- We don't handle magic quotes - if you have that enabled, you'll have to do your own $_POST processing
 - Probably not as extensible and configurable as Xajax
 - Lacks certain plugins that are already developed for Xajax
+
+## Known issues ##
+
+- On rare occasions, empty strings ("") are passed as "null" (affects IE only)
 
 ## What's with the Core_ stuff? ##
 
