@@ -1,7 +1,7 @@
 Sijax stands for "Simple ajax" and provides just that.
 It's a simple php/jquery library providing easy ajax integration for php web apps.
 
-Sijax is very similar to Xajax ( http://xajaxproject.org/ ), which was developed way before it.
+Sijax is very similar to [Xajax](http://xajaxproject.org/), which was developed way before it.
 The difference is that Sijax aims to be a lot simpler and faster, while still providing the majority of features and extensibility.
 
 There are sample files in `Sijax/examples` that demonstrate how it can be used.
@@ -12,7 +12,7 @@ Sijax lets you register any function (simple function, static class method, obje
 
     Sijax.request('myFunction', ['argument 1', 15.84]);
 
-Ajax support is provided by jQuery at the low-level. Sijax only handles dispatching the correct registered function on the server, and interpreting the response.
+Ajax support is provided by [jQuery](http://jquery.com/) at the low-level. Sijax only handles dispatching the correct registered function on the server, and interpreting the response.
 
 A registered function may be referred to as response function. It gets triggered with a javascript call, and receives a `Response object` as its first argument. By calling different methods on the `Response object` the response function talks back to the browser.
 Here's how the myFunction implementation might look on the PHP side:
@@ -75,13 +75,13 @@ Browsers that do have native JSON support, won't need to load this additional re
 
 ## This looks very similar to Xajax. Which one should i use? ##
 
-Yes, indeed. This library was hugely influenced by Xajax ( http://xajaxproject.org ), which is also actively developed and really nice.
+Yes, indeed. This library was hugely influenced by [Xajax](http://xajaxproject.org), which is also actively developed and really nice.
 
 Xajax provides certain features that you may need that we don't provide. See **known limitations** to see what they are.
 
 Our goal was to make Sijax work as fast as possible and be as light as possible, while providing MOST of the frequently used features of Xajax.
 
-We believe Sijax to be a lot faster and lighter than Xajax on the server-side. Thanks to jQuery and the number of features we support, our javascript library is also about 10 times smaller.
+We believe Sijax to be a lot faster and lighter than Xajax on the server-side. Thanks to [jQuery](http://jquery.com/) and the number of features we support, our javascript library is also about 10 times smaller.
 
 ## Known limitations ##
 
