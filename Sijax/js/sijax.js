@@ -54,6 +54,10 @@ Sijax.process_attr = function (params) {
 	}
 };
 
+Sijax.process_css = function (params) {
+	$(params.selector).css(params.key, params.value);
+};
+
 Sijax.process_script = function (params) {
 	eval(params.script);
 };
