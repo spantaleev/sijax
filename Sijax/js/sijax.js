@@ -103,7 +103,7 @@ Sijax.getFormValues = function (formSelector) {
 		regexNested = /(\w+)\[(\w+)\]/,
 		elementsSelector = formSelector + ' input, ' + formSelector + ' textarea, ' + formSelector + ' select';
 
-	$.each(elementsSelector, function (idx, object) {
+	$.each($(elementsSelector), function (idx, object) {
 		var attrName = $(this).attr('name'),
 			attrValue = $(this).attr('value'),
 			attrDisabled = $(this).attr('disabled'),
