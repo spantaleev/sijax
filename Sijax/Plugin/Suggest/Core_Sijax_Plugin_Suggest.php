@@ -11,6 +11,7 @@ final class Core_Sijax_Plugin_Suggest {
 	const PARAM_CALLBACK = 'callback';
 	const PARAM_CSS_CLASS = 'itemClass';
 	const PARAM_CSS_CLASS_SELECTED = 'itemSelectedClass';
+	const PARAM_ADDITIONAL = 'additional';
 	
 	private $_params = array();
 	
@@ -87,6 +88,22 @@ final class Core_Sijax_Plugin_Suggest {
 	 */
 	public function setDelimiter($string) {
 		$this->_params[self::PARAM_DELIMITER] = $string;
+		
+		return $this;
+	}
+	
+	/**
+	 * Sets a key-value array of additional parameters to be passed,
+	 * when suggestions are requested.
+	 *
+	 * Example: array('someOtherField' => "$('#fieldId').attr('value')")
+	 * When requesting suggestions the `someOtherField` field
+	 * will be populated with the result of eval()-ing its script.
+	 *
+	 * @param array $map
+	 */
+	public function setAdditionalData(array $map) {
+		$this->_params[self::PARAM_ADDITIONAL] = $map;
 		
 		return $this;
 	}

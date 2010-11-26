@@ -387,11 +387,11 @@ sjxSuggest.getSuggestions = function (text) {
 };
 
 sjxSuggest.getAdditionalData = function (additional) {
-	var paramsData = [];
+	var paramsData = {};
 	
-	for (var i = 0; i < additional.length; i++) {
-		paramsData[additional[i].key] = sjxSuggest.getValueOrCmdResult(additional[i].value);
-	}
+	$.each(additional, function (key, value) {
+		paramsData[key] = sjxSuggest.getValueOrCmdResult(value);
+	});
 	
 	return paramsData;
 };
