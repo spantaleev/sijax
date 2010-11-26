@@ -134,7 +134,13 @@ final class Core_Loader {
 		}
 
 		if (isset(self::$_eventsMap[self::EVENT_EXCEPTION])) {
-			self::fireEvent(self::EVENT_EXCEPTION, array(new Core_Exception ( $message )));
+			if (class_exists('Core_Exception', false)) {
+				$exceptionObject = new Core_Exception($message);
+			} else {
+				$exceptionObject = new Exception($message);
+			}
+			
+			self::fireEvent(self::EVENT_EXCEPTION, array($exceptionObject));
 		} else {
 			die ( __CLASS__ . ': an error occured during autoloading, but we there\'s no callback to handle it.' );
 		}
