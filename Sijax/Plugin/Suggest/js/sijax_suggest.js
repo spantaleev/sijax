@@ -1,4 +1,3 @@
-"use strict";
 var sjxSuggest = {};
 
 sjxSuggest.registeredFields = [];	//contains all the registered fields' objects

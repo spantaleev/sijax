@@ -1,4 +1,3 @@
-"use strict";
 var sjxComet = {};
 
 sjxComet.request = function (functionName, callArgs) {

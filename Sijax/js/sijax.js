@@ -1,5 +1,3 @@
-"use strict";
-
 var Sijax = {};
 
 Sijax.PARAM_REQUEST = 'sijax_rq';
@@ -100,11 +98,12 @@ Sijax.request = function (functionName, callArgs, requestParams) {
 	$.ajax($.extend(defaultRequestParams, requestParams));
 };
 
-Sijax.getFormValues = function (selector) {
+Sijax.getFormValues = function (formSelector) {
 	var values = {},
-		regexNested = /(\w+)\[(\w+)\]/;
+		regexNested = /(\w+)\[(\w+)\]/,
+		elementsSelector = formSelector + ' input, ' + formSelector + ' textarea, ' + formSelector + ' select';
 
-	$.each($(selector + ' input, ' + selector + ' textarea, ' + selector + ' select'), function (idx, object) {
+	$.each(elementsSelector, function (idx, object) {
 		var attrName = $(this).attr('name'),
 			attrValue = $(this).attr('value'),
 			attrDisabled = $(this).attr('disabled'),

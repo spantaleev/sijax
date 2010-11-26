@@ -1,5 +1,3 @@
-"use strict";
-
 var sjxUpload = {};
 
 sjxUpload.FIELD_FORM_ID = 'sjxUpload_formId';
