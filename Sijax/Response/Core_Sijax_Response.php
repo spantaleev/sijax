@@ -71,8 +71,8 @@ class Core_Sijax_Response {
 		return $this->addCommand(self::COMMAND_ALERT, array(self::COMMAND_ALERT => $string));
 	}
 
-	private function _html($selector, $html, $isAppend) {
-		return $this->addCommand(self::COMMAND_HTML, array('selector' => $selector, 'html' => $html, 'append' => $isAppend));
+	private function _html($selector, $html, $setType) {
+		return $this->addCommand(self::COMMAND_HTML, array('selector' => $selector, 'html' => $html, 'setType' => $setType));
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Core_Sijax_Response {
 	 * @param string $html
 	 */
 	public function html($selector, $html) {
-		return $this->_html($selector, $html, false);
+		return $this->_html($selector, $html, 'replace');
 	}
 
 	/**
@@ -95,8 +95,20 @@ class Core_Sijax_Response {
 	 * @param string $html
 	 */
 	public function htmlAppend($selector, $html) {
-		return $this->_html($selector, $html, true);
+		return $this->_html($selector, $html, 'append');
 	}
+
+	/**
+	 * Prepends the given html to the element specified by the selector.
+	 * Scripts inside the html block are also executed.
+	 *
+	 * @param string $selector
+	 * @param string $html
+	 */
+	public function htmlPrepend($selector, $html) {
+		return $this->_html($selector, $html, 'prepend');
+	}
+
 
 	/**
 	 * Executes the given javascript code.
@@ -105,16 +117,6 @@ class Core_Sijax_Response {
 	 */
 	public function script($script) {
 		return $this->addCommand(self::COMMAND_SCRIPT, array(self::COMMAND_SCRIPT => $script));
-	}
-
-	private function _attr($selector, $property, $value, $isAppend) {
-		$params = array();
-		$params ['selector'] = $selector;
-		$params ['key'] = $property;
-		$params ['value'] = $value;
-		$params ['append'] = $isAppend;
-
-		return $this->addCommand(self::COMMAND_ATTR, $params);
 	}
 
 	/**
@@ -130,6 +132,16 @@ class Core_Sijax_Response {
 		return $this->addCommand(self::COMMAND_CSS, array('selector' => $selector, 'key' => $property, 'value' => $value));
 	}
 
+	private function _attr($selector, $property, $value, $setType) {
+		$params = array();
+		$params ['selector'] = $selector;
+		$params ['key'] = $property;
+		$params ['value'] = $value;
+		$params ['setType'] = $setType;
+
+		return $this->addCommand(self::COMMAND_ATTR, $params);
+	}
+
 	/**
 	 * Finds an element by the specified selector and changes
 	 * the specified property to the given value.
@@ -140,7 +152,7 @@ class Core_Sijax_Response {
 	 * @param mixed $value
 	 */
 	public function attr($selector, $property, $value) {
-		return $this->_attr($selector, $property, $value, false);
+		return $this->_attr($selector, $property, $value, 'replace');
 	}
 
 	/**
@@ -152,7 +164,19 @@ class Core_Sijax_Response {
 	 * @param mixed $value
 	 */
 	public function attrAppend($selector, $property, $value) {
-		return $this->_attr($selector, $property, $value, true);
+		return $this->_attr($selector, $property, $value, 'append');
+	}
+
+	/**
+	 * Same as attr(), but this prepends the given value,
+	 * instead of setting it.
+	 *
+	 * @param string $selector
+	 * @param string $property
+	 * @param mixed $value
+	 */
+	public function attrPrepend($selector, $property, $value) {
+		return $this->_attr($selector, $property, $value, 'prepend');
 	}
 
 	/**

@@ -37,18 +37,26 @@ Sijax.process_alert = function (params) {
 };
 
 Sijax.process_html = function (params) {
-	if (params.append) {
-		$(params.selector).append(params.html);
+	var selectorResult = $(params.selector);
+	
+	if (params.setType == 'replace') {
+		selectorResult.html(params.html);
+	} else if (params.setType == 'append') {
+		selectorResult.append(params.html);
 	} else {
-		$(params.selector).html(params.html);
+		selectorResult.prepend(params.html);
 	}
 };
 
 Sijax.process_attr = function (params) {
-	if (params.append) {
-		$(params.selector).attr(params.key, $(params.selector).attr(params.key) + params.value);
+	var selectorResult = $(params.selector);
+	
+	if (params.setType === 'replace') {
+		selectorResult.attr(params.key, params.value);
+	} else if (params.setType === 'append') {
+		selectorResult.attr(params.key, selectorResult.attr(params.key) + params.value);
 	} else {
-		$(params.selector).attr(params.key, params.value);
+		selectorResult.attr(params.key, params.value + selectorResult.attr(params.key));
 	}
 };
 
