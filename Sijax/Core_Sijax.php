@@ -179,7 +179,7 @@ final class Core_Sijax {
 		if (isset($params [self::PARAM_RESPONSE_CLASS])) {
 			$responseClass = $params [self::PARAM_RESPONSE_CLASS];
 		} else {
-			$responseClass = __CLASS__ . '_Response';	
+			$responseClass = __CLASS__ . '_Response';
 		}
 		
 		$objResponse = new $responseClass($args);

@@ -204,7 +204,7 @@ class Core_Sijax_Response {
 	 * @param string $jsFunctionName
 	 * @param array $params
 	 */
-	public function call($jsFunctionName, $params) {
+	public function call($jsFunctionName, $params = array()) {
 		return $this->addCommand(self::COMMAND_CALL, array(self::COMMAND_CALL => $jsFunctionName, 'params' => $params));
 	}
 
