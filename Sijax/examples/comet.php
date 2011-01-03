@@ -90,7 +90,5 @@ Core_Sijax::processRequest();
 			sjxComet.request('doWork', [500000]);
 		});
 		</script>
-		
-		<div id="zz"></div>
 	</body>
 </html>

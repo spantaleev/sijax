@@ -9,7 +9,7 @@ sjxComet.request = function (functionName, callArgs) {
 	iframe.setAttribute('style', 'display: none;');
 	
 	var form = document.createElement('form'),
-		formId = 'form4_' + functionName;
+		formId = 'form4_' + functionName + '_' + (new Date().getTime());
 	
 	form.setAttribute('id', formId);
 	form.setAttribute('name', formId);
@@ -21,10 +21,11 @@ sjxComet.request = function (functionName, callArgs) {
 	$('body').append(form);
 	
 	$('#' + frameId).bind('load', function () {
-		//We need to remove the iframe, after leaving this callback
-		//Or Google Chrome reports "Failed to load resource"
+		//We need to remove the iframe/form, but only after leaving this callback
+		//Or Google Chrome would report "Failed to load resource"
 		window.setTimeout(function () {
 			$('#' + frameId).remove();
+			$('#' + formId).remove();
 		});
 	});
 	
