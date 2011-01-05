@@ -1,14 +1,14 @@
 Sijax stands for "Simple ajax" and provides just that.
 It's a simple php/jquery library providing easy ajax integration for php web apps.
 
-Sijax is very similar to [Xajax](http://xajaxproject.org/), which was developed way before it.
+Sijax is very similar to [Xajax](http://xajax-project.org/), which was developed way before it.
 The difference is that Sijax aims to be a lot simpler and faster, while still providing the majority of features and extensibility.
 
 There are sample files in `Sijax/examples` that demonstrate how it can be used.
 
 ## How does it work? ##
 
-Sijax lets you register any function (simple function, static class method, object method, closure) to be called from the client (browser) using javascript like so:
+Sijax lets you register any function (simple function, static class method, object method, closure) to be called from the client (browser) using javascript like this:
 
     Sijax.request('myFunction', ['argument 1', 15.84]);
 
@@ -28,9 +28,12 @@ Once the response function exits, the `queued commands` (like `alert()`, or any 
 - `alert($message)` - shows the alert message
 - `html($selector, $html)` - sets the given `$html` to all elements matching the jQuery selector `$selector`
 - `htmlAppend($selector, $html)` - same as `html()`, but appends html instead of setting the new html
-- `script($javascript)` - executes the given `$javascript`
+- `htmlPrepend($selector, $html)` - same as `html()`, but prepends html instead of setting the new html
 - `attr($selector, $property, $value)` - changes the `$property` to `$value` for all elements matching the jQuery selector `$selector`
 - `attrAppend($selector, $property, $value)` - same as `attr()`, but appends to the property value, instead of setting a new value
+- `attrPrepend($selector, $property, $value)` - same as `attr()`, but prepends to the property value, instead of setting a new value
+- `css($selector, $property, $value)` - changes the style `$property` to `$value` for all elements matching the jQuery selector `$selector`
+- `script($javascript)` - executes the given `$javascript` code
 - `remove($selector)` - removes all DOM elements matching the selector
 - `redirect($url)` - redirects the browser to the given `$url`
 - `call($function, $argumentsArray)` - calls a javascript function named `$function`, passing the given arguments to it
@@ -73,9 +76,9 @@ The `json2.js` file is also hosted with this project, and can be found in the `j
 
 Browsers that do have native JSON support, won't need to load this additional resource.
 
-## This looks very similar to Xajax. Which one should i use? ##
+## This looks very similar to Xajax. Which one should I use? ##
 
-Yes, indeed. This library was hugely influenced by [Xajax](http://xajaxproject.org), which is also actively developed and really nice.
+Yes, indeed. This library was hugely influenced by [Xajax](http://xajax-project.org), which is also actively developed and really nice.
 
 Xajax provides certain features that you may need that we don't provide. See **known limitations** to see what they are.
 
