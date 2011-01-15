@@ -120,6 +120,10 @@ Sijax.getFormValues = function (formSelector) {
 		if (attrName === '' || attrDisabled === true) {
 			return;
 		}
+		
+		if (this.tagName === 'INPUT' && $(this).attr('type') === 'checkbox' && ! $(this).attr('checked')) {
+			return;
+		}
 
 		if (attrValue === "") {
 			//IE's JSON.stringify doesn't like empty bare strings
