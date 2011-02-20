@@ -1,6 +1,10 @@
 var sjxComet = {};
 
 sjxComet.request = function (functionName, callArgs) {
+	if (callArgs === undefined) {
+		callArgs = [];
+	}
+
 	var iframe = document.createElement('iframe'),
 		frameId = 'frame4_' + functionName + '_' + (new Date().getTime());
 	
