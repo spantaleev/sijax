@@ -31,7 +31,7 @@ final class Core_Sijax_Plugin_Suggest_Response extends Core_Sijax_Response {
 	}
 
 	public function getJson() {
-		parent::call('sjxSuggest.processResponse', $this->_response);
+		parent::call('sjxSuggest.processResponse', array($this->_response));
 		
 		return parent::getJson();
 	}
