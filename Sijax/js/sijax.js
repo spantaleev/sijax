@@ -107,10 +107,9 @@ Sijax.request = function (functionName, callArgs, requestParams) {
 };
 
 Sijax.getFormValues = function (formSelector) {
-	var values = {},
-		elementsSelector = formSelector + ' input, ' + formSelector + ' textarea, ' + formSelector + ' select';
+	var values = {};
 
-	$.each($(elementsSelector), function (idx, object) {
+	$.each($(formSelector).find('input, textarea, select'), function (idx, object) {
 		var attrName = $(this).attr('name'),
 			attrValue = $(this).attr('value'),
 			tagName = this.tagName,
