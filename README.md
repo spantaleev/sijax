@@ -60,7 +60,7 @@ Here's an example on how to use some of them:
 
 ## How light is it? ##
 
-The javascript core is less than 3kB in its original form. Keep in mind that you need jQuery loaded on the page for it to function. It was tested with jQuery `1.4` and `1.5`, but some older releases should/may also work.
+The javascript core is about 4kB in its original form. Keep in mind that you need jQuery loaded on the page for it to function. It was tested with jQuery `1.4` and `1.5`, but some older releases should/may also work.
 
 ## Are there any other dependencies? ##
 
