@@ -95,10 +95,6 @@ We believe Sijax to be a lot faster and lighter than Xajax on the server-side. T
 - Probably not as extensible and configurable as Xajax
 - Lacks certain plugins that are already developed for Xajax
 
-## Known issues ##
-
-- On rare occasions, empty strings ("") are passed as "null" (affects IE only)
-
 ## What's with the Core_ stuff? ##
 
 Sijax is one component of a bigger framework developed and maintained by me, which hasn't been released yet. All core framework classes are prefixed/"namespaced" with `Core_`.
