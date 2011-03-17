@@ -84,7 +84,7 @@ document.onmouseup = sjxSuggest.suggestMouseUp;
 
 sjxSuggest.switchPosition = function (moveWhere) {
 	var fieldItem = sjxSuggest.registeredFields[sjxSuggest.selectedField];
-	$('#' + fieldItem.containerId + 'Item' + fieldItem.position).attr('class', fieldItem.itemClass);
+	jQuery('#' + fieldItem.containerId + 'Item' + fieldItem.position).attr('class', fieldItem.itemClass);
 	fieldItem.position = moveWhere;
 	
 	if (moveWhere >= fieldItem.listItemsCount) {
@@ -93,7 +93,7 @@ sjxSuggest.switchPosition = function (moveWhere) {
 		fieldItem.position = fieldItem.listItemsCount - 1;
 	}
 	
-	$('#' + fieldItem.containerId + 'Item' + fieldItem.position).attr('class', fieldItem.itemSelectedClass);
+	jQuery('#' + fieldItem.containerId + 'Item' + fieldItem.position).attr('class', fieldItem.itemSelectedClass);
 };
 
 sjxSuggest.selectItem = function () {
@@ -131,7 +131,7 @@ sjxSuggest.showList = function (listOffset) {
 	sjxSuggest.addToLogger('positioned at: ' + showAt + 'px');
 
 	if (sjxSuggest.curField.listIsOpen === 0) {
-		$('#' + sjxSuggest.curField.containerId).show('fast');
+		jQuery('#' + sjxSuggest.curField.containerId).show('fast');
 	}
 	
 	sjxSuggest.curField.listIsOpen = 1;
@@ -146,7 +146,7 @@ sjxSuggest.hideList = function () {
 		
 		sjxSuggest.curField.listIsOpen = 0; //mark as closed
 		sjxSuggest.curField.position = 0;	//reset position counter
-		$('#' + sjxSuggest.curField.containerId).hide('fast');
+		jQuery('#' + sjxSuggest.curField.containerId).hide('fast');
 		sjxSuggest.deselectField();
 	} catch (e) {
 		sjxSuggest.addToLogger(e);
@@ -162,15 +162,15 @@ sjxSuggest.getString = function () {
 		if (document.selection) {
 			// IE Support
 			//IE users can currently edit only the last element
-			var tagsArray = $('#' + sjxSuggest.curField.fieldId).attr('value').split(delimiter);
-			sjxSuggest.curField.totalLength = $('#' + sjxSuggest.curField.fieldId).attr('value').length;
+			var tagsArray = jQuery('#' + sjxSuggest.curField.fieldId).attr('value').split(delimiter);
+			sjxSuggest.curField.totalLength = jQuery('#' + sjxSuggest.curField.fieldId).attr('value').length;
 			sjxSuggest.curField.tagPosition = tagsArray.length - delimiterLength;
 			return tagsArray[tagsArray.length - 1];
 		}
 		
 		if (myField.selectionStart || myField.selectionStart == '0') { //Real Browsers Support
 			var startPos = myField.selectionStart;
-			var tagsArray = $('#' + sjxSuggest.curField.fieldId).attr('value').split(delimiter);
+			var tagsArray = jQuery('#' + sjxSuggest.curField.fieldId).attr('value').split(delimiter);
 
 			sjxSuggest.curField.totalLength = 0;
 			for (var i = 0; i < tagsArray.length; i++) {
@@ -388,7 +388,7 @@ sjxSuggest.getSuggestions = function (text) {
 sjxSuggest.getAdditionalData = function (additional) {
 	var paramsData = {};
 	
-	$.each(additional, function (key, value) {
+	jQuery.each(additional, function (key, value) {
 		paramsData[key] = sjxSuggest.getValueOrCmdResult(value);
 	});
 	
@@ -414,13 +414,13 @@ sjxSuggest.addToLogger = function (text) {
 	}
 	
 	try {
-		$('#logger').append('<br />' + text);
+		jQuery('#logger').append('<br />' + text);
 	} catch (e) {
 	}
 };
 
 sjxSuggest.reInitSuggestFields = function () {
-	$.each(sjxSuggest.registeredFields, function (index, fieldItem) {
+	jQuery.each(sjxSuggest.registeredFields, function (index, fieldItem) {
 		sjxSuggest.prepareContainer(fieldItem.containerId, index);
 		sjxSuggest.prepareBox(fieldItem.fieldId, index);
 	});
