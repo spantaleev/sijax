@@ -46,7 +46,7 @@ final class Core_Sijax_Plugin_Upload_Response extends Core_Sijax_Response {
 	 * Resets the form to its state at the time the page was initially loaded.
 	 */
 	public function resetForm() {
-		return parent::call('sjxUpload.resetForm', $this->getFormId());
+		return parent::call('sjxUpload.resetForm', array($this->getFormId()));
 	}
 
 	/**
