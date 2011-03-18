@@ -310,20 +310,8 @@ final class Core_Sijax {
 	 * If you want to avoid autodetection, or override this, use setRequestUri().
 	 */
 	private static function _detectRequestUri() {
-		$hostName = strip_tags ( isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost' );
-		
-		if (! isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
-			$scheme = 'http';
-		} else {
-			$scheme = 'https';
-		}
-		
-		$baseUrl = $scheme . '://' . $hostName;
-		
 		$requestUri = strip_tags ( isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
-		$currentUrl = $baseUrl . $requestUri;
-		
-		self::setRequestUri($currentUrl);
+		self::setRequestUri($requestUri);
 	}
 	
 	/**
