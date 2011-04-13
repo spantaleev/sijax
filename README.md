@@ -46,12 +46,12 @@ Here's an example on how to use some of them:
 
         //Supposing we have: `<input type="text" id="total-sum" />`
         $objResponse->attr('#total-sum', 'value', $double * 4);
-	
+
         $objResponse->alert('Sum was calculated!');
-	
+
         //Let's remove all DIVs and the input box now
         $objResponse->remove('div')->remove('#total-sum');
-	
+
         $objResponse->alert('Redirecting you..');
 
         //Let's redirect the user away
@@ -71,7 +71,7 @@ JSON is also needed (for encoding messages) in the browser, so browsers having n
 Sijax will detect such browsers and load the library for them, provided you have pointed to it like so:
 
     Core_Sijax::setJsonUri('{URI TO json2.js}');
-    
+
 The `json2.js` file is also hosted with this project, and can be found in the `js/` directory.
 
 Browsers that do have native JSON support, won't need to load this additional resource.

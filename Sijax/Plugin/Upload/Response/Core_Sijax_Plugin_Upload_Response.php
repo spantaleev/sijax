@@ -3,7 +3,7 @@
  * This is the Sijax response class for upload callbacks.
  * It supports everything that the base response class provides,
  * while adding some additional functionality to help dealing with forms.
- * 
+ *
  * It also adds `flush()` support, so you can do some comet stuff from within your upload callback.
  */
 final class Core_Sijax_Plugin_Upload_Response extends Core_Sijax_Response {
@@ -14,7 +14,7 @@ final class Core_Sijax_Plugin_Upload_Response extends Core_Sijax_Response {
 	public function __construct(array $requestArgs) {
 		parent::__construct($requestArgs);
 
-		//The formId that we're dealing with is the only expected argument.	
+		//The formId that we're dealing with is the only expected argument.
 		if (isset($requestArgs[0])) {
 			$this->_formId = (string) $requestArgs[0];
 		}

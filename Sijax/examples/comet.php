@@ -18,10 +18,10 @@ class CometHandler {
 			$width = ($i * 80) . 'px';
 			$objResponse->script("$('#progress').css('width', '$width');");
 			$objResponse->html('#progress', $width);
-			
+
 			//Send the data to the browser
 			$objResponse->flush();
-			
+
 			if ($i !== 5) {
 				usleep($sleepTime);
 			}
@@ -42,12 +42,12 @@ Core_Sijax::processRequest();
 <html>
 	<head>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-		
-		<!-- 
+
+		<!--
 		This is the recommended way of loading the core files..
 		<script type="text/javascript" src="url/to/sijax.js"></script>
 		 -->
-		 
+
 		<script type="text/javascript">
 			<?php
 			//Including the files using script-src tags is the
@@ -55,11 +55,11 @@ Core_Sijax::processRequest();
 			echo file_get_contents('../js/sijax.js');
 			echo file_get_contents('../Plugin/Comet/js/sijax_comet.js');
 			?>
-				
+
 			if (typeof($) === 'undefined') {
 				alert('Failed to load jquery. Sijax relies on Jquery to work!');
 			}
-			
+
 			if (typeof(Sijax) === 'undefined') {
 				alert('Failed to load sijax.js! This example will not work unless you fix it!');
 			}
@@ -67,7 +67,7 @@ Core_Sijax::processRequest();
 			if (typeof(sjxComet) === 'undefined') {
 				alert('Failed to load sijax_comet.js! This example will not work unless you fix it!');
 			}
-					
+
 			<?php echo Core_Sijax::getJs(); ?>
 		</script>
 	</head>
@@ -78,10 +78,10 @@ Core_Sijax::processRequest();
 				&nbsp;
 			</div>
 		</div>
-		
-		
+
+
 		<button id="btnStart">Start</button>
-		
+
 		<script type="text/javascript">
 		$('#btnStart').bind('click', function () {
 			$('#progress').css('width', 0).html('&nbsp;');

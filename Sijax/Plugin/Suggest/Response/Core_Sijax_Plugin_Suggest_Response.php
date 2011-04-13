@@ -10,7 +10,7 @@ final class Core_Sijax_Plugin_Suggest_Response extends Core_Sijax_Response {
 
 	public function __construct(array $requestArgs) {
 		parent::__construct($requestArgs);
-		
+
 		/**
 		 * The sijax response function expects only one parameter.
 		 * It should be an array containing different parameters.
@@ -20,10 +20,10 @@ final class Core_Sijax_Plugin_Suggest_Response extends Core_Sijax_Response {
 		if (isset($requestArgs[0])) {
 			$this->_response = $requestArgs[0];
 		}
-		
+
 		$this->addSuggestions(array());
 	}
-	
+
 	public function addSuggestions(array $suggestions) {
 		$this->_response ['suggestions'] = $suggestions;
 
@@ -32,7 +32,7 @@ final class Core_Sijax_Plugin_Suggest_Response extends Core_Sijax_Response {
 
 	public function getJson() {
 		parent::call('sjxSuggest.processResponse', array($this->_response));
-		
+
 		return parent::getJson();
 	}
 

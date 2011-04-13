@@ -8,7 +8,7 @@
 final class Core_Sijax_Plugin_Comet_Response extends Core_Sijax_Response {
 
 	private $_flushesCount = 0;
-	
+
 	/**
 	 * Sends the commands accumulated so far to the browser.
 	 * You can continue pushing new commands which will be
