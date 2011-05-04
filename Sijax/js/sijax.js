@@ -14,10 +14,9 @@ Sijax.getRequestUri = function () {
 };
 
 Sijax.setJsonUri = function (uri) {
-	if (uri === null || typeof(JSON) !== "undefined") {
+	if (! uri || typeof(JSON) !== "undefined") {
 		return;
 	}
-
 	jQuery.getScript(uri);
 };
 
@@ -37,27 +36,28 @@ Sijax.process_alert = function (params) {
 };
 
 Sijax.process_html = function (params) {
-	var selectorResult = jQuery(params.selector);
-
+	var $obj = jQuery(params.selector);
 	if (params.setType == 'replace') {
-		selectorResult.html(params.html);
+		$obj.html(params.html);
 	} else if (params.setType == 'append') {
-		selectorResult.append(params.html);
+		$obj.append(params.html);
 	} else {
-		selectorResult.prepend(params.html);
+		$obj.prepend(params.html);
 	}
 };
 
 Sijax.process_attr = function (params) {
-	var selectorResult = jQuery(params.selector);
-
+	var $obj = jQuery(params.selector),
+        value,
+        attrOrProp = (! $obj.prop ? 'attr' : 'prop');
 	if (params.setType === 'replace') {
-		selectorResult.attr(params.key, params.value);
+        value = params.value;
 	} else if (params.setType === 'append') {
-		selectorResult.attr(params.key, selectorResult.attr(params.key) + params.value);
+        value = $obj[attrOrProp](params.key) + params.value;
 	} else {
-		selectorResult.attr(params.key, params.value + selectorResult.attr(params.key));
+        value = params.value + $obj[attrOrProp](params.key);
 	}
+    $obj[attrOrProp](params.key, value);
 };
 
 Sijax.process_css = function (params) {
@@ -75,16 +75,14 @@ Sijax.process_remove = function (params) {
 Sijax.process_call = function (params) {
 	var callbackString = params.call,
 		callback = eval(callbackString);
-
 	callback.apply(null, params.params);
 };
 
 Sijax.request = function (functionName, callArgs, requestParams) {
-	if (callArgs === undefined) {
+	if (! callArgs) {
 		callArgs = [];
 	}
-
-	if (requestParams === undefined) {
+	if (! requestParams) {
 		requestParams = {};
 	}
 
@@ -110,18 +108,19 @@ Sijax.getFormValues = function (formSelector) {
 	var values = {};
 
 	jQuery.each(jQuery(formSelector).find('input, textarea, select'), function (idx, object) {
-		var attrName = jQuery(this).attr('name'),
-			attrValue = jQuery(this).attr('value'),
+		var attrName = this.name,
+			attrValue = jQuery(this).val(),
 			tagName = this.tagName,
-			type = jQuery(this).attr('type'),
+            $this = jQuery(this),
+			type = $this.attr('type'),
 			nestingParts;
 
-		if (attrName === '' || jQuery(this).attr('disabled') === true) {
+		if (! attrName || $this.is(':disabled') === true) {
 			return;
 		}
 
 		if (tagName === 'INPUT') {
-			if ((type === 'checkbox' || type === 'radio') && ! jQuery(this).attr('checked')) {
+			if ((type === 'checkbox' || type === 'radio') && ! $this.is(':checked')) {
 				return;
 			}
 		}
