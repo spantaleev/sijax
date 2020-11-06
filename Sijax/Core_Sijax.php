@@ -259,7 +259,11 @@ final class Core_Sijax {
 
 		$args = array_merge(array($objResponse), $requestArgs);
 
-		call_user_func_array($callback, $args);
+		try {
+			call_user_func_array($callback, $args);
+		} catch (\TypeError $e) {
+			$objResponse->call('console.log', ['Sijax error: function called with an invalid number of arguments or wrong types']);
+		}
 	}
 
 	/**
