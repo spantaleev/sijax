@@ -1,20 +1,20 @@
 <?php
 /**
  * Autoloads certainly formatted class names.
- * 
+ *
  * Every class is "namespaced" by adding a `Prefix_` to it.
  * Once that prefix is registered for autoloading, using:
  * `Core_Loader::registerPrefix('Prefix_', '{base path to Prefix}`)`
  * the loader would try to load `Prefix_` classes automatically.
- * 
+ *
  * The naming convetion looks similar to that of Zend Framework,
  * with a slight change - the filename is different.
- * 
+ *
  * `Prefix_My_ClassName` maps to the file:
  * `{base path to Prefix}/My/ClassName/Prefix_My_ClassName.php`
  * While Zend Framework would have mapped it to:
  * `{base path to Prefix}/My/ClassName.php`
- *  
+ *
  * Regular namespaces (available since php 5.3) are currently not supported.
  */
 final class Core_Loader {
@@ -22,12 +22,12 @@ final class Core_Loader {
 	private static $_prefixData = array ();
 	private static $_inittedPackages = array();
 	private static $_requiredOnce = array ();
-	
+
 	private static $_eventsMap = array();
 	private static $_events = array();
-	
+
 	private static $_isRegistered = false;
-	
+
 	const EVENT_BEFORE_PACKAGE_LOAD = 0;
 	const EVENT_AFTER_PACKAGE_LOAD = 1;
 	const EVENT_BEFORE_CLASS_LOAD = 2;
@@ -39,23 +39,23 @@ final class Core_Loader {
 			spl_autoload_register ( array (__CLASS__, 'autoload' ) );
 			self::$_isRegistered = true;
 		}
-		
+
 		self::$_prefixData [$prefixKey] = $basePath;
 	}
-	
+
 	public static function registerEvent($type, $callback) {
 		self::$_eventsMap[$type] = true;
-		
+
 		if (! isset(self::$_events[$type])) {
 			self::$_events[$type] = array($callback);
 		} else {
 			self::$_events[$type][] = $callback;
 		}
 	}
-	
+
 	public static function fireEvent($type, array $args) {
 		$callbacksArray = self::$_events[$type];
-		
+
 		foreach ($callbacksArray as $callback) {
 			call_user_func_array($callback, $args);
 		}
@@ -87,13 +87,13 @@ final class Core_Loader {
 
 		$partsNoPrefix = $partsOriginal;
 		$prefixKey = array_shift ( $partsNoPrefix );
-		
+
 		if (! isset(self::$_prefixData[$prefixKey])) {
 			//Unknown prefix key..
 			//Class loading is probably desitined to be handled by another autoloader
 			return;
 		}
-		
+
 		$appPath = self::$_prefixData[$prefixKey];
 		$packageKey = (isset($partsNoPrefix[0]) ? $partsNoPrefix[0] : '');
 		$classPath = $appPath . implode ( '/', $partsNoPrefix ) . '/' . implode ( '_', $partsOriginal ) . '.php';
@@ -105,13 +105,13 @@ final class Core_Loader {
 		if (isset(self::$_eventsMap[self::EVENT_BEFORE_PACKAGE_LOAD])) {
 			self::fireEvent(self::EVENT_BEFORE_PACKAGE_LOAD, array($prefixKey, $packageKey, $className));
 		}
-		
+
 		if (isset(self::$_eventsMap[self::EVENT_BEFORE_CLASS_LOAD])) {
 			self::fireEvent(self::EVENT_BEFORE_CLASS_LOAD, array($className));
 		}
-		
+
 		require $classPath;
-		
+
 		if (isset(self::$_eventsMap[self::EVENT_AFTER_CLASS_LOAD])) {
 			self::fireEvent(self::EVENT_AFTER_CLASS_LOAD, array($className, microtime ( true ) - $start));
 		}
@@ -139,7 +139,7 @@ final class Core_Loader {
 			} else {
 				$exceptionObject = new Exception($message);
 			}
-			
+
 			self::fireEvent(self::EVENT_EXCEPTION, array($exceptionObject));
 		} else {
 			die ( __CLASS__ . ': an error occured during autoloading, but we there\'s no callback to handle it.' );
@@ -150,7 +150,7 @@ final class Core_Loader {
 	 * require_once alternative which throws exceptions when
 	 * loading the specified file fails.
 	 * It's also a little bit faster than require_once.
-	 * 
+	 *
 	 * @param unknown_type $path
 	 * @throws Core_Exception
 	 */
@@ -166,10 +166,10 @@ final class Core_Loader {
 
 		require $path;
 	}
-	
+
 	/**
 	 * App_Something_Else maps to {path_to_App}/Something/Else/
-	 * 
+	 *
 	 * @param string $ident
 	 * @throws Core_Exception
 	 */
@@ -190,6 +190,6 @@ final class Core_Loader {
 
 		return $basePath . implode ( '/', $partsNoPrefix ) . '/';
 	}
-	
+
 }
 ?>
